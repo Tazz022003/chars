@@ -1,1120 +1,1731 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Something I Made For You ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <title>Something I Made For You ❤️</title>
 
-    html {
-        scroll-behavior: smooth;
-    }
+    <style>
 
-    body {
-        font-family: "Segoe UI", Arial, sans-serif;
-        background:
-            radial-gradient(circle at 20% 20%, #40134f 0%, transparent 30%),
-            radial-gradient(circle at 80% 30%, #182a5c 0%, transparent 30%),
-            linear-gradient(135deg, #080713, #10091c, #080713);
-        color: white;
-        min-height: 100vh;
-        overflow-x: hidden;
-    }
+        /* =========================================================
+           RESET
+        ========================================================= */
 
-    /* =========================
-       FLOATING HEARTS
-    ========================== */
-
-    .hearts {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        overflow: hidden;
-        z-index: 0;
-    }
-
-    .heart {
-        position: absolute;
-        bottom: -50px;
-        font-size: 20px;
-        opacity: 0.7;
-        animation: floatUp linear infinite;
-    }
-
-    @keyframes floatUp {
-        0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 0;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        10% {
-            opacity: 0.8;
+        html {
+            scroll-behavior: smooth;
         }
 
-        100% {
-            transform: translateY(-110vh) rotate(360deg);
-            opacity: 0;
-        }
-    }
 
-    /* =========================
-       NAV
-    ========================== */
+        /* =========================================================
+           BODY
+        ========================================================= */
 
-    nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        padding: 18px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: rgba(8, 7, 19, 0.65);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-        z-index: 100;
-    }
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
 
-    .logo {
-        font-size: 22px;
-        font-weight: bold;
-        color: #ff72b6;
-    }
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    #40134f 0%,
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 30%,
+                    #182a5c 0%,
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #080713,
+                    #10091c,
+                    #080713
+                );
 
-    .made {
-        color: #aaa;
-        font-size: 13px;
-    }
-
-    /* =========================
-       GENERAL
-    ========================== */
-
-    section {
-        width: min(1100px, 92%);
-        margin: auto;
-        position: relative;
-        z-index: 2;
-    }
-
-    .glass {
-        background: rgba(255,255,255,0.045);
-        border: 1px solid rgba(255,255,255,0.09);
-        backdrop-filter: blur(12px);
-        border-radius: 25px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    }
-
-    /* =========================
-       HERO
-    ========================== */
-
-    .hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 100px 20px 60px;
-    }
-
-    .hero-content {
-        max-width: 800px;
-    }
-
-    .small-text {
-        color: #ff76ba;
-        font-size: 15px;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        margin-bottom: 18px;
-    }
-
-    .hero h1 {
-        font-size: clamp(3rem, 9vw, 7rem);
-        line-height: 0.95;
-        margin-bottom: 25px;
-        text-shadow: 0 0 35px rgba(255,80,160,0.25);
-    }
-
-    .hero h1 span {
-        color: #ff72b6;
-    }
-
-    .hero h2 {
-        font-size: clamp(1.2rem, 4vw, 2rem);
-        font-weight: 400;
-        color: #ddd;
-        margin-bottom: 25px;
-    }
-
-    .hero p {
-        max-width: 650px;
-        margin: auto;
-        color: #aaa8b7;
-        font-size: 17px;
-        line-height: 1.8;
-    }
-
-    .scroll {
-        margin-top: 50px;
-        color: #ff72b6;
-        animation: bounce 2s infinite;
-        font-size: 25px;
-    }
-
-    @keyframes bounce {
-        0%, 100% {
-            transform: translateY(0);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        50% {
-            transform: translateY(10px);
-        }
-    }
 
-    /* =========================
-       SECTION TITLES
-    ========================== */
+        /* =========================================================
+           FLOATING HEARTS
+        ========================================================= */
 
-    .section-title {
-        text-align: center;
-        margin-bottom: 45px;
-    }
-
-    .section-title h2 {
-        font-size: clamp(2rem, 5vw, 3.2rem);
-        margin-bottom: 10px;
-    }
-
-    .section-title p {
-        color: #aaa;
-    }
-
-    /* =========================
-       WHY SPECIAL
-    ========================== */
-
-    .special {
-        padding: 55px 30px;
-        margin-bottom: 100px;
-    }
-
-    .special-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-    }
-
-    .special-card {
-        text-align: center;
-        padding: 20px 10px;
-    }
-
-    .special-icon {
-        font-size: 38px;
-        margin-bottom: 15px;
-    }
-
-    .special-card h3 {
-        font-size: 16px;
-        margin-bottom: 8px;
-    }
-
-    .special-card p {
-        color: #aaa;
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    /* =========================
-       LETTER
-    ========================== */
-
-    .letter {
-        padding: 50px;
-        margin-bottom: 100px;
-    }
-
-    .letter-content {
-        max-width: 750px;
-        margin: auto;
-        text-align: center;
-    }
-
-    .letter-icon {
-        font-size: 55px;
-        margin-bottom: 20px;
-    }
-
-    .letter h2 {
-        font-size: 2.3rem;
-        margin-bottom: 25px;
-    }
-
-    .letter p {
-        color: #c0bdc8;
-        line-height: 2;
-        font-size: 16px;
-        margin-bottom: 15px;
-    }
-
-    .highlight {
-        color: #ff75b8;
-        font-weight: bold;
-    }
-
-    /* =========================
-       DATE IDEAS
-    ========================== */
-
-    .date-section {
-        margin-bottom: 100px;
-    }
-
-    .date-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-    }
-
-    .date-card {
-        padding: 30px 20px;
-        text-align: center;
-        transition: 0.3s;
-    }
-
-    .date-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(255,114,182,0.4);
-    }
-
-    .date-card .icon {
-        font-size: 42px;
-        margin-bottom: 15px;
-    }
-
-    .date-card h3 {
-        margin-bottom: 8px;
-    }
-
-    .date-card p {
-        color: #999;
-        font-size: 14px;
-    }
-
-    /* =========================
-       QUESTION
-    ========================== */
-
-    .question {
-        text-align: center;
-        padding: 100px 20px;
-        margin-bottom: 60px;
-    }
-
-    .question h2 {
-        font-size: clamp(2.5rem, 7vw, 5rem);
-        margin-bottom: 20px;
-        line-height: 1.1;
-    }
-
-    .question h2 span {
-        color: #ff72b6;
-    }
-
-    .question p {
-        color: #aaa;
-        margin-bottom: 40px;
-    }
-
-    .buttons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-
-    button {
-        border: none;
-        cursor: pointer;
-        font-family: inherit;
-    }
-
-    .yes-btn {
-        padding: 17px 38px;
-        border-radius: 50px;
-        background: linear-gradient(135deg, #ff4f9a, #a855f7);
-        color: white;
-        font-size: 17px;
-        font-weight: bold;
-        box-shadow: 0 10px 35px rgba(255,79,154,0.25);
-        transition: 0.3s;
-    }
-
-    .yes-btn:hover {
-        transform: scale(1.07);
-        box-shadow: 0 15px 45px rgba(255,79,154,0.4);
-    }
-
-    .no-btn {
-    padding: 17px 38px;
-    border-radius: 50px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #ddd;
-    font-size: 17px;
-    cursor: pointer;
-
-    /* IMPORTANT */
-    position: relative;
-
-    transition:
-        left 0.25s ease,
-        top 0.25s ease,
-        transform 0.25s ease;
-    }
-
-    .no-btn:hover {
-    background: rgba(255,255,255,0.05);
-    }
-
-    /* =========================
-       SUCCESS MESSAGE
-    ========================== */
-
-    .success {
-        display: none;
-        margin: 40px auto 0;
-        max-width: 650px;
-        padding: 35px;
-        border-radius: 20px;
-        background: rgba(255,80,160,0.08);
-        border: 1px solid rgba(255,100,180,0.3);
-        animation: pop 0.5s ease;
-    }
-
-    .success.show {
-        display: block;
-    }
-
-    .success h3 {
-        color: #ff79bb;
-        font-size: 28px;
-        margin-bottom: 12px;
-    }
-
-    .success p {
-        color: #ccc;
-        margin: 0;
-        line-height: 1.8;
-    }
-
-    @keyframes pop {
-        0% {
-            transform: scale(0.7);
-            opacity: 0;
+        .hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
         }
 
-        100% {
-            transform: scale(1);
-            opacity: 1;
-        }
-    }
-
-    /* =========================
-       FOOTER
-    ========================== */
-
-    footer {
-        text-align: center;
-        padding: 50px 20px;
-        border-top: 1px solid rgba(255,255,255,0.08);
-        color: #888;
-        position: relative;
-        z-index: 2;
-    }
-
-    footer .heart-footer {
-        color: #ff72b6;
-        font-size: 25px;
-        margin-bottom: 15px;
-    }
-
-    footer strong {
-        color: #ddd;
-    }
-
-    /* =========================
-       CONFETTI
-    ========================== */
-
-    .confetti {
-        position: fixed;
-        width: 10px;
-        height: 10px;
-        top: -20px;
-        z-index: 999;
-        pointer-events: none;
-        animation: confettiFall 3s linear forwards;
-    }
-
-    @keyframes confettiFall {
-        0% {
-            transform: translateY(0) rotate(0deg);
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 20px;
+            opacity: 0.7;
+            animation: floatUp linear infinite;
         }
 
-        100% {
-            transform: translateY(110vh) rotate(720deg);
+        @keyframes floatUp {
+
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
         }
-    }
 
-    /* =========================
-       RESPONSIVE
-    ========================== */
 
-    @media (max-width: 850px) {
-
-        .special-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .date-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 600px) {
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
 
         nav {
-            padding: 15px 18px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            padding: 18px 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(8, 7, 19, 0.65);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff72b6;
         }
 
         .made {
-            font-size: 11px;
+            color: #aaa;
+            font-size: 13px;
         }
 
+
+        /* =========================================================
+           GENERAL
+        ========================================================= */
+
+        section {
+            width: min(1100px, 92%);
+            margin: auto;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.045);
+
+            border: 1px solid rgba(255, 255, 255, 0.09);
+
+            backdrop-filter: blur(12px);
+
+            border-radius: 25px;
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
         .hero {
-            padding-top: 110px;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 100px 20px 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .small-text {
+            color: #ff76ba;
+
+            font-size: 15px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 18px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(3rem, 9vw, 7rem);
+
+            line-height: 0.95;
+
+            margin-bottom: 25px;
+
+            text-shadow: 0 0 35px rgba(255, 80, 160, 0.25);
         }
 
+        .hero h1 span {
+            color: #ff72b6;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+
+            font-weight: 400;
+
+            color: #ddd;
+
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            max-width: 650px;
+
+            margin: auto;
+
+            color: #aaa8b7;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+        }
+
+        .scroll {
+            margin-top: 50px;
+
+            color: #ff72b6;
+
+            animation: bounce 2s infinite;
+
+            font-size: 25px;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+
+        /* =========================================================
+           CRUSH PHOTO ❤️
+        ========================================================= */
+
+        .crush-photo-container {
+            position: relative;
+
+            width: 280px;
+            height: 350px;
+
+            margin: 30px auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .crush-photo {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 25px;
+
+            border: 3px solid rgba(255, 114, 182, 0.7);
+
+            box-shadow:
+                0 0 25px rgba(255, 80, 160, 0.6),
+                0 0 60px rgba(168, 85, 247, 0.35);
+
+            animation: photoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes photoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .photo-hearts {
+            position: absolute;
+
+            font-size: 32px;
+
+            top: -15px;
+            right: -25px;
+
+            animation: heartFloat 3s ease-in-out infinite;
+        }
+
+        .heart-two {
+            left: -30px;
+            top: 50%;
+
+            animation-delay: 1s;
+        }
+
+        .heart-three {
+            right: -20px;
+            bottom: -15px;
+            top: auto;
+
+            animation-delay: 2s;
+        }
+
+        @keyframes heartFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(10deg);
+            }
+        }
+
+
+        /* =========================================================
+           SECTION TITLES
+        ========================================================= */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #aaa;
+        }
+
+
+        /* =========================================================
+           WHY SPECIAL
+        ========================================================= */
+
         .special {
-            padding: 35px 20px;
+            padding: 55px 30px;
+
+            margin-bottom: 100px;
         }
 
         .special-grid {
-            grid-template-columns: 1fr;
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 20px;
+        }
+
+        .special-card {
+            text-align: center;
+
+            padding: 20px 10px;
+        }
+
+        .special-icon {
+            font-size: 38px;
+
+            margin-bottom: 15px;
+        }
+
+        .special-card h3 {
+            font-size: 16px;
+
+            margin-bottom: 8px;
+        }
+
+        .special-card p {
+            color: #aaa;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================================
+           LETTER
+        ========================================================= */
+
+        .letter {
+            padding: 50px;
+
+            margin-bottom: 100px;
+        }
+
+        .letter-content {
+            max-width: 750px;
+
+            margin: auto;
+
+            text-align: center;
+        }
+
+        .letter-icon {
+            font-size: 55px;
+
+            margin-bottom: 20px;
+        }
+
+        .letter h2 {
+            font-size: 2.3rem;
+
+            margin-bottom: 25px;
+        }
+
+        .letter p {
+            color: #c0bdc8;
+
+            line-height: 2;
+
+            font-size: 16px;
+
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #ff75b8;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================================
+           DATE IDEAS
+        ========================================================= */
+
+        .date-section {
+            margin-bottom: 100px;
         }
 
         .date-grid {
-            grid-template-columns: 1fr;
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
         }
 
-        .letter {
-            padding: 35px 20px;
+        .date-card {
+            padding: 30px 20px;
+
+            text-align: center;
+
+            transition: 0.3s;
         }
+
+        .date-card:hover {
+            transform: translateY(-8px);
+
+            border-color: rgba(255, 114, 182, 0.4);
+        }
+
+        .date-card .icon {
+            font-size: 42px;
+
+            margin-bottom: 15px;
+        }
+
+        .date-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .date-card p {
+            color: #999;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           QUESTION
+        ========================================================= */
 
         .question {
-            padding: 70px 15px;
+            position: relative;
+
+            text-align: center;
+
+            padding: 100px 20px;
+
+            margin-bottom: 60px;
+
+            min-height: 550px;
+
+            overflow: hidden;
         }
+
+        .question h2 {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+
+            margin-bottom: 20px;
+
+            line-height: 1.1;
+        }
+
+        .question h2 span {
+            color: #ff72b6;
+        }
+
+        .question p {
+            color: #aaa;
+
+            margin-bottom: 40px;
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
 
         .buttons {
-            flex-direction: column;
+            position: relative;
+
+            min-height: 100px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 20px;
         }
 
-        .yes-btn,
-        .no-btn {
-            width: 90%;
+        button {
+            border: none;
+
+            cursor: pointer;
+
+            font-family: inherit;
         }
-    }
-</style>
+
+        .yes-btn {
+            padding: 17px 38px;
+
+            border-radius: 50px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff4f9a,
+                    #a855f7
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 10px 35px rgba(255, 79, 154, 0.25);
+
+            transition: 0.3s;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.07);
+
+            box-shadow:
+                0 15px 45px rgba(255, 79, 154, 0.4);
+        }
+
+        .no-btn {
+            padding: 17px 38px;
+
+            border-radius: 50px;
+
+            background: transparent;
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            color: #ddd;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            position: relative;
+
+            z-index: 10;
+
+            transition:
+                left 0.25s ease,
+                top 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .no-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+
+        /* =========================================================
+           SUCCESS MESSAGE
+        ========================================================= */
+
+        .success {
+            display: none;
+
+            margin: 40px auto 0;
+
+            max-width: 650px;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            background: rgba(255, 80, 160, 0.08);
+
+            border: 1px solid rgba(255, 100, 180, 0.3);
+
+            animation: pop 0.5s ease;
+        }
+
+        .success.show {
+            display: block;
+        }
+
+        .success h3 {
+            color: #ff79bb;
+
+            font-size: 28px;
+
+            margin-bottom: 12px;
+        }
+
+        .success p {
+            color: #ccc;
+
+            margin: 0;
+
+            line-height: 1.8;
+        }
+
+        @keyframes pop {
+
+            0% {
+                transform: scale(0.7);
+
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+
+                opacity: 1;
+            }
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            text-align: center;
+
+            padding: 50px 20px;
+
+            border-top:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            color: #888;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+        footer .heart-footer {
+            color: #ff72b6;
+
+            font-size: 25px;
+
+            margin-bottom: 15px;
+        }
+
+        footer strong {
+            color: #ddd;
+        }
+
+
+        /* =========================================================
+           CONFETTI
+        ========================================================= */
+
+        .confetti {
+            position: fixed;
+
+            width: 10px;
+            height: 10px;
+
+            top: -20px;
+
+            z-index: 999;
+
+            pointer-events: none;
+
+            animation:
+                confettiFall 3s linear forwards;
+        }
+
+        @keyframes confettiFall {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+            }
+
+            100% {
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+            }
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .special-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .date-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 15px 18px;
+            }
+
+            .made {
+                font-size: 11px;
+            }
+
+            .hero {
+                padding-top: 110px;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .special {
+                padding: 35px 20px;
+            }
+
+            .special-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .date-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .letter {
+                padding: 35px 20px;
+            }
+
+            .question {
+                padding: 70px 15px;
+
+                min-height: 600px;
+            }
+
+            .buttons {
+                min-height: 220px;
+
+                flex-direction: row;
+            }
+
+            .yes-btn {
+                z-index: 5;
+            }
+
+            .no-btn {
+                z-index: 10;
+            }
+
+            .yes-btn,
+            .no-btn {
+                width: auto;
+            }
+
+            .crush-photo-container {
+                width: 220px;
+                height: 280px;
+            }
+
+            .photo-hearts {
+                font-size: 25px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-<!-- FLOATING HEARTS -->
-<div class="hearts" id="hearts"></div>
+    <!-- =========================================================
+         FLOATING HEARTS
+    ========================================================= -->
+
+    <div class="hearts" id="hearts"></div>
 
 
-<!-- NAVIGATION -->
-<nav>
-    <!-- EDIT HERE if you want -->
-    <div class="logo">♡ CG</div>
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================= -->
 
-    <div class="made">
-        Made with a little courage ❤️
-    </div>
-</nav>
+    <nav>
 
-
-<!-- =========================
-     HERO
-========================== -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <div class="small-text">
-            Hey, You! maliit na ali ❤️
+        <!-- EDIT HERE if you want -->
+        <div class="logo">
+            ♡ CG
         </div>
 
-        <!-- EDIT HERE: You can change her name -->
-        <h1>
-            I made this <span>for you yanna</span>
-        </h1>
-
-        <h2>
-            And yes... I probably spent way too much time making this. 😂
-        </h2>
-
-        <p>
-            I could have just sent you a message...
-            but where's the fun in that? So I made an entire website
-            instead. 😭
-        </p>
-
-        <div class="scroll">
-            ↓
+        <div class="made">
+            Made with a little courage ❤️
         </div>
 
-    </div>
-
-</section>
+    </nav>
 
 
-<!-- =========================
-     WHY YOU'RE SPECIAL
-========================== -->
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
 
-<section>
+    <section class="hero">
 
-    <div class="special glass">
+        <div class="hero-content">
+
+            <div class="small-text">
+                Hey, You! maliit na ali ❤️
+            </div>
+
+
+            <!-- EDIT HERE: You can change her name -->
+
+            <h1>
+                I made this
+                <span>for you yanna</span>
+            </h1>
+
+
+            <h2>
+                And yes... I probably spent way too much time making this. 😂
+            </h2>
+
+
+            <!-- =====================================================
+                 HER PHOTO ❤️
+            ====================================================== -->
+
+            <div class="crush-photo-container">
+
+                <img
+                    src="haha.jpg"
+                    alt="Someone Special"
+                    class="crush-photo"
+                >
+
+                <div class="photo-hearts">
+                    💕
+                </div>
+
+                <div class="photo-hearts heart-two">
+                    💗
+                </div>
+
+                <div class="photo-hearts heart-three">
+                    ✨
+                </div>
+
+            </div>
+
+
+            <p>
+                I could have just sent you a message...
+                but where's the fun in that? So I made an entire website
+                instead. 😭
+            </p>
+
+
+            <div class="scroll">
+                ↓
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         WHY YOU'RE SPECIAL
+    ========================================================= -->
+
+    <section>
+
+        <div class="special glass">
+
+            <div class="section-title">
+
+                <h2>
+                    Why You're Special 💗
+                </h2>
+
+                <p>
+                    A few things I really like about you...
+                </p>
+
+            </div>
+
+
+            <div class="special-grid">
+
+                <div class="special-card">
+
+                    <div class="special-icon">
+                        💗
+                    </div>
+
+                    <h3>
+                        You make ordinary days better
+                    </h3>
+
+                    <p>
+                        Somehow, things just feel a little nicer
+                        when you're around. ang kulit mo e hehehe
+                    </p>
+
+                </div>
+
+
+                <div class="special-card">
+
+                    <div class="special-icon">
+                        ✨
+                    </div>
+
+                    <h3>
+                        Your smile
+                    </h3>
+
+                    <p>
+                        Honestly, it should probably come with
+                        a warning. It's distracting.  yieeeee kilig yarn hahahahah😂
+                    </p>
+
+                </div>
+
+
+                <div class="special-card">
+
+                    <div class="special-icon">
+                        🌸
+                    </div>
+
+                    <h3>
+                        You're genuinely amazing
+                    </h3>
+
+                    <p>
+                        There's something about you that makes
+                        you different from everyone else. pretty brainy sisipa na yan sya hahahahah😂
+                    </p>
+
+                </div>
+
+
+                <div class="special-card">
+
+                    <div class="special-icon">
+                        🥹
+                    </div>
+
+                    <h3>
+                        I enjoy talking to you
+                    </h3>
+
+                    <p>
+                        Even random conversations somehow become
+                        my favorite conversations.
+                    </p>
+
+                </div>
+
+
+                <div class="special-card">
+
+                    <div class="special-icon">
+                        ∞
+                    </div>
+
+                    <h3>
+                        I want more memories
+                    </h3>
+
+                    <p>
+                        And maybe... we could make some together.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         LETTER
+    ========================================================= -->
+
+    <section>
+
+        <div class="letter glass">
+
+            <div class="letter-content">
+
+                <div class="letter-icon">
+                    💌
+                </div>
+
+                <h2>
+                    A Little Confession...
+                </h2>
+
+
+                <p>
+                    Okay, let's be honest.
+                </p>
+
+
+                <p>
+                    Btw hope na mapasa mo po exam mo aral mabuti and good luck sa journey mo po hehehehe again "WISH YOU LUCK PO SA EXAM"
+
+                    <span class="highlight">
+                        "grab mo dala kong luck POGE KO KASE hahahahahaha"
+                    </span>
+                    😂
+                </p>
+
+
+                <p>
+                    I really like spending time with you.
+                    I like talking to you. ill wait po untill matapos exam yeiiiii kilig nanaman yan
+                </p>
+
+
+                <p>
+                    And I don't want to make this complicated.
+                    I just want to ask you one simple question...
+
+                    <span class="highlight">
+                        "TRY MO REJECT di kaya  hahahahahaha"
+                    </span>
+                    😂
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         POSSIBLE DATE
+    ========================================================= -->
+
+    <section class="date-section">
 
         <div class="section-title">
-            <h2>Why You're Special 💗</h2>
+
+            <h2>
+                So... What Could We Do? 🌷
+            </h2>
 
             <p>
-                A few things I really like about you...
-            </p>
-        </div>
-
-        <div class="special-grid">
-
-            <div class="special-card">
-                <div class="special-icon">💗</div>
-
-                <h3>You make ordinary days better</h3>
-
-                <p>
-                    Somehow, things just feel a little nicer
-                    when you're around. ang kulit mo e hehehe
-                </p>
-            </div>
-
-
-            <div class="special-card">
-                <div class="special-icon">✨</div>
-
-                <h3>Your smile</h3>
-
-                <p>
-                    Honestly, it should probably come with
-                    a warning. It's distracting.  yieeeee kilig yarn hahahahah😂
-                </p>
-            </div>
-
-
-            <div class="special-card">
-                <div class="special-icon">🌸</div>
-
-                <h3>You're genuinely amazing</h3>
-
-                <p>
-                    There's something about you that makes
-                    you different from everyone else. pretty brainy sisipa na yan sya hahahahah😂
-                </p>
-            </div>
-
-
-            <div class="special-card">
-                <div class="special-icon">🥹</div>
-
-                <h3>I enjoy talking to you</h3>
-
-                <p>
-                    Even random conversations somehow become
-                    my favorite conversations. 
-                </p>
-            </div>
-
-
-            <div class="special-card">
-                <div class="special-icon">∞</div>
-
-                <h3>I want more memories</h3>
-
-                <p>
-                    And maybe... we could make some together.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     LETTER
-========================== -->
-
-<section>
-
-    <div class="letter glass">
-
-        <div class="letter-content">
-
-            <div class="letter-icon">
-                💌
-            </div>
-
-            <h2>A Little Confession...</h2>
-
-            <p>
-                Okay, let's be honest.
-            </p>
-
-            <p>
-               Btw hope na mapasa mo po exam mo aral mabuti and good luck sa journey mo po hehehehe again "WISH YOU LUCK PO SA EXAM" 
-                <span class="highlight">"grab mo dala kung luck POGE KO KASE hahahahahaha"</span> 😂
-                
-            </p>
-
-            <p>
-                I really like spending time with you.
-                I like talking to you. ill wait po untill matapos exam yeiiiii kilig nanaman yan
-            </p>
-
-            <p>
-                And I don't want to make this complicated.
-                I just want to ask you one simple question...
-
-                <span class="highlight">"TRY MO REJECT di kaya  hahahahahaha"</span> 😂
-                
-
-
-
+                If you say yes, I'm thinking something simple.
             </p>
 
         </div>
 
-    </div>
 
-</section>
+        <div class="date-grid">
 
 
-<!-- =========================
-     POSSIBLE DATE
-========================== -->
+            <div class="date-card glass">
 
-<section class="date-section">
+                <div class="icon">
+                    ☕
+                </div>
 
-    <div class="section-title">
+                <h3>
+                    Coffee & Talks
+                </h3>
 
-        <h2>So... What Could We Do? 🌷</h2>
+                <p>
+                    Just us, coffee, and probably a lot of random stories.
+                </p>
+
+            </div>
+
+
+            <div class="date-card glass">
+
+                <div class="icon">
+                    🍽️
+                </div>
+
+                <h3>
+                    Dinner
+                </h3>
+
+                <p>
+                    Good food + good company.
+                    Sounds like a pretty good plan.
+                </p>
+
+            </div>
+
+
+            <div class="date-card glass">
+
+                <div class="icon">
+                    🎬
+                </div>
+
+                <h3>
+                    Watch Movies
+                </h3>
+
+                <p>
+                    Movie, snacks, and arguing about what movie
+                    we're actually going to watch. 😂
+                </p>
+
+            </div>
+
+
+            <div class="date-card glass">
+
+                <div class="icon">
+                    🌅
+                </div>
+
+                <h3>
+                    Sunset Walk
+                </h3>
+
+                <p>
+                    Somewhere peaceful with a nice view.
+                </p>
+
+            </div>
+
+
+            <div class="date-card glass">
+
+                <div class="icon">
+                    🎵
+                </div>
+
+                <h3>
+                    Music & Vibes
+                </h3>
+
+                <p>
+                    Sharing songs and discovering each other's favorites.
+                </p>
+
+            </div>
+
+
+            <div class="date-card glass">
+
+                <div class="icon">
+                    📸
+                </div>
+
+                <h3>
+                    Take Pictures
+                </h3>
+
+                <p>
+                    Because obviously we need proof this actually happened. 😭
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         BIG QUESTION
+    ========================================================= -->
+
+    <section>
+
+        <div class="question glass">
+
+            <h2>
+
+                So...<br>
+
+                <span>
+                    will you  be my friend wahahahahah pwede ba yun? reject mo kung kaya mo hehehe di mo po kaya kasi anliit mo
+                </span>
+
+                😂❤️
+
+            </h2>
+
+
+            <p>
+                No pressure. Just a guy taking a very brave step. 😂
+            </p>
+
+
+            <div class="buttons">
+
+                <!-- YES BUTTON -->
+
+                <button
+                    class="yes-btn"
+                    id="yesBtn"
+                >
+                    YES! I'd love to ❤️
+                </button>
+
+
+                <!-- NO BUTTON -->
+
+                <button
+                    class="no-btn"
+                    id="noBtn"
+                >
+                    NO 😭
+                </button>
+
+            </div>
+
+
+            <!-- =====================================================
+                 SUCCESS MESSAGE
+            ====================================================== -->
+
+            <div
+                class="success"
+                id="success"
+            >
+
+                <h3>
+                    WAIT... YOU SAID YES?! 😭❤️
+                </h3>
+                <!-- YOUR PHOTO REVEAL ❤️ -->
+                 <div class="my-photo-reveal" id="myPhotoReveal">
+
+                      <div class="reveal-hearts">❤️ ✨ 💕</div>
+
+                       <img src="ako.jpg" alt="Me"class="my-photo">
+
+                     <h3>HAHAHAHA SURPRISE!  😭❤️</h3>
+
+                </div>
+
+                <p>
+                    Okay, now I'm officially smiling WHAHAHHAHA liit mo po maam . 😂
+
+                    <br><br>
+
+                    I'll message you so we can figure out the details.
+
+                    <br><br>
+
+                    <strong>
+                        I'm really looking forward sa ka kulitan mo po hehehe 💗
+                    </strong>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="heart-footer">
+            ♥
+        </div>
 
         <p>
-            If you say yes, I'm thinking something simple.
-        </p>
-
-    </div>
-
-
-    <div class="date-grid">
-
-        <div class="date-card glass">
-
-            <div class="icon">☕</div>
-
-            <h3>Coffee & Talks</h3>
-
-            <p>
-                Just us, coffee, and probably a lot of random stories.
-            </p>
-
-        </div>
-
-
-        <div class="date-card glass">
-
-            <div class="icon">🍽️</div>
-
-            <h3>Dinner</h3>
-
-            <p>
-                Good food + good company.
-                Sounds like a pretty good plan.
-            </p>
-
-        </div>
-
-
-        <div class="date-card glass">
-
-            <div class="icon">🎬</div>
-
-            <h3>Watch Movies</h3>
-
-            <p>
-                Movie, snacks, and arguing about what movie
-                we're actually going to watch. 😂
-            </p>
-
-        </div>
-
-
-        <div class="date-card glass">
-
-            <div class="icon">🌅</div>
-
-            <h3>Sunset Walk</h3>
-
-            <p>
-                Somewhere peaceful with a nice view.
-            </p>
-
-        </div>
-
-
-        <div class="date-card glass">
-
-            <div class="icon">🎵</div>
-
-            <h3>Music & Vibes</h3>
-
-            <p>
-                Sharing songs and discovering each other's favorites.
-            </p>
-
-        </div>
-
-
-        <div class="date-card glass">
-
-            <div class="icon">📸</div>
-
-            <h3>Take Pictures</h3>
-
-            <p>
-                Because obviously we need proof this actually happened. 😭
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     BIG QUESTION
-========================== -->
-
-<section>
-
-    <div class="question glass">
-
-        <h2>
-            So...<br>
-            <span>will you  be my friend wahahahahah pwede ba yun? reject mo kung kaya mo hehehe di mo po kaya kasi anliit mo</span> 😂❤️
-        </h2>
-
-        <p>
-            No pressure. Just a guy taking a very brave step. 😂
+            Made by
+            <strong>
+                zzat
+            </strong>
         </p>
 
 
-        <div class="buttons">
+        <p style="margin-top: 20px; font-size: 12px;">
 
-            <!-- YES BUTTON -->
-            <button class="yes-btn" id="yesBtn">
-                YES! I'd love to ❤️
-            </button>
+            Whatever your answer is, thank you for taking the time
+            to look at this. ❤️
 
-            <!-- NO BUTTON -->
-            <button class="no-btn" id="noBtn">
-              NO 😭
-            </button>
+        </p>
 
-        </div>
+    </footer>
 
 
-        <!-- SUCCESS MESSAGE -->
-        <div class="success" id="success">
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
 
-            <h3>
-                WAIT... YOU SAID YES?! 😭❤️
-            </h3>
+    <script>
 
-            <p>
-                Okay, now I'm officially smiling WHAHAHHAHA liit mo po maam . 😂
-                <br><br>
 
-                I'll message you so we can figure out the details.
-                <br><br>
+        /* =========================================================
+           FLOATING HEARTS
+        ========================================================= */
 
-                <strong>
-                    I'm really looking forward sa ka kulitan mo po hehehe 💗
-                </strong>
-            </p>
+        const heartsContainer =
+            document.getElementById("hearts");
 
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================== -->
-
-<footer>
-
-    <div class="heart-footer">
-        ♥
-    </div>
-
-    <p>
-        Made by <strong>CG</strong>
-    </p>
-
-    
-
-    <p style="margin-top: 20px; font-size: 12px;">
-        Whatever your answer is, thank you for taking the time
-        to look at this. ❤️
-    </p>
-
-</footer>
-
-
-<script>
-
-    /* =========================
-       FLOATING HEARTS
-    ========================== */
-
-    const heartsContainer = document.getElementById("hearts");
-
-    const heartSymbols = ["❤️", "💕", "💗", "💖", "💘", "♡"];
-
-    function createHeart() {
-
-        const heart = document.createElement("div");
-
-        heart.className = "heart";
-
-        heart.innerText =
-            heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-
-        heart.style.left = Math.random() * 100 + "%";
-
-        heart.style.fontSize =
-            (12 + Math.random() * 20) + "px";
-
-        heart.style.animationDuration =
-            (6 + Math.random() * 8) + "s";
-
-        heart.style.animationDelay =
-            Math.random() * 3 + "s";
-
-        heartsContainer.appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove();
-        }, 15000);
-    }
-
-    setInterval(createHeart, 500);
-
-    for (let i = 0; i < 15; i++) {
-        createHeart();
-    }
-
-
-    /* =========================
-       YES BUTTON
-    ========================== */
-
-    const yesBtn = document.getElementById("yesBtn");
-
-    const success = document.getElementById("success");
-
-    yesBtn.addEventListener("click", function() {
-
-        success.classList.add("show");
-
-        yesBtn.innerHTML = "IT'S A DATE! ❤️";
-
-        yesBtn.style.transform = "scale(1.08)";
-
-        createConfetti();
-
-        setTimeout(() => {
-            success.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        }, 200);
-
-    });
-
-
-    /* =========================
-       NO BUTTON
-    ========================== */
-
-    
-    const noBtn = document.getElementById("noBtn");
-const questionBox = document.querySelector(".question");
-
-const noMessages = [
-    "NO 😭",
-    "Are you sure? 🥹",
-    "Really? 😭",
-    "Think again 👀",
-    "Wait... 😭",
-    "I'll bring snacks! 🥺",
-    "One chance? 😭",
-    "YANNA PRETTY PLEASE  😭",
-    "Please? 🥹❤️"
-];
-
-let noIndex = 0;
-
-function moveNoButton() {
-
-    // Make the button position relative to the question box
-    noBtn.style.position = "absolute";
-
-    const boxRect = questionBox.getBoundingClientRect();
-
-    const buttonWidth = noBtn.offsetWidth;
-    const buttonHeight = noBtn.offsetHeight;
-
-    // Keep the button inside the question box
-    const maxX = boxRect.width - buttonWidth - 20;
-    const maxY = boxRect.height - buttonHeight - 20;
-
-    const randomX = Math.max(
-        10,
-        Math.random() * maxX
-    );
-
-    const randomY = Math.max(
-        10,
-        Math.random() * maxY
-    );
-
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
-
-    // Change message
-    noIndex++;
-
-    if (noIndex < noMessages.length) {
-        noBtn.innerText = noMessages[noIndex];
-    }
-}
-
-
-/* PC */
-noBtn.addEventListener("mouseenter", function() {
-    moveNoButton();
-});
-
-
-/* PHONE */
-noBtn.addEventListener("touchstart", function(event) {
-    event.preventDefault();
-    moveNoButton();
-});
-
-
-/* If somehow she manages to click it */
-noBtn.addEventListener("click", function() {
-
-    noBtn.innerText = "Okay... I respect that ❤️";
-
-    noBtn.style.position = "relative";
-    noBtn.style.left = "0";
-    noBtn.style.top = "0";
-
-});
-    /* =========================
-       CONFETTI
-    ========================== */
-
-    function createConfetti() {
-
-        const symbols = [
+        const heartSymbols = [
             "❤️",
             "💕",
             "💗",
-            "✨",
             "💖",
-            "🌸",
-            "🎉"
+            "💘",
+            "♡"
         ];
 
-        for (let i = 0; i < 80; i++) {
 
-            const piece = document.createElement("div");
+        function createHeart() {
 
-            piece.className = "confetti";
+            const heart =
+                document.createElement("div");
 
-            piece.innerText =
-                symbols[Math.floor(Math.random() * symbols.length)];
+            heart.className = "heart";
 
-            piece.style.left =
-                Math.random() * 100 + "vw";
+            heart.innerText =
+                heartSymbols[
+                    Math.floor(
+                        Math.random() * heartSymbols.length
+                    )
+                ];
 
-            piece.style.fontSize =
-                (12 + Math.random() * 18) + "px";
+            heart.style.left =
+                Math.random() * 100 + "%";
 
-            piece.style.animationDuration =
-                (2 + Math.random() * 3) + "s";
+            heart.style.fontSize =
+                12 + Math.random() * 20 + "px";
 
-            piece.style.animationDelay =
-                Math.random() * 0.8 + "s";
+            heart.style.animationDuration =
+                6 + Math.random() * 8 + "s";
 
-            document.body.appendChild(piece);
+            heart.style.animationDelay =
+                Math.random() * 3 + "s";
+
+            heartsContainer.appendChild(heart);
+
 
             setTimeout(() => {
-                piece.remove();
-            }, 5000);
+
+                heart.remove();
+
+            }, 15000);
+        }
+
+
+        setInterval(createHeart, 500);
+
+
+        for (let i = 0; i < 15; i++) {
+
+            createHeart();
 
         }
 
-    }
 
-</script>
+
+        /* =========================================================
+           YES BUTTON
+        ========================================================= */
+
+        const yesBtn =
+            document.getElementById("yesBtn");
+
+        const success =
+            document.getElementById("success");
+
+
+        yesBtn.addEventListener(
+            "click",
+            function () {
+
+                success.classList.add("show");
+
+                yesBtn.innerHTML =
+                    "IT'S A DATE! ❤️";
+
+                yesBtn.style.transform =
+                    "scale(1.08)";
+
+                createConfetti();
+
+
+                setTimeout(() => {
+
+                    success.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                }, 200);
+
+            }
+        );
+
+
+
+        /* =========================================================
+           NO BUTTON
+        ========================================================= */
+
+        const noBtn =
+            document.getElementById("noBtn");
+
+        const questionBox =
+            document.querySelector(".question");
+
+        const buttonsArea =
+            document.querySelector(".buttons");
+
+
+        const noMessages = [
+
+            "NO 😭",
+
+            "Are you sure? 🥹",
+
+            "Really? 😭",
+
+            "Think again 👀",
+
+            "Wait... 😭",
+
+            "I'll bring snacks! 🥺",
+
+            "One chance? 😭",
+
+            "YANNA PRETTY PLEASE  😭",
+
+            "Please? 🥹❤️"
+
+        ];
+
+
+        let noIndex = 0;
+
+
+        function moveNoButton() {
+
+            /*
+                Make the button absolute so it can
+                move freely inside the buttons area.
+            */
+
+            noBtn.style.position = "absolute";
+
+
+            const areaWidth =
+                buttonsArea.clientWidth;
+
+            const areaHeight =
+                buttonsArea.clientHeight;
+
+
+            const buttonWidth =
+                noBtn.offsetWidth;
+
+            const buttonHeight =
+                noBtn.offsetHeight;
+
+
+            /*
+                Keep the button inside the
+                buttons area.
+            */
+
+            const padding = 10;
+
+
+            const maxX =
+                Math.max(
+                    padding,
+                    areaWidth -
+                    buttonWidth -
+                    padding
+                );
+
+
+            const maxY =
+                Math.max(
+                    padding,
+                    areaHeight -
+                    buttonHeight -
+                    padding
+                );
+
+
+            const randomX =
+                padding +
+                Math.random() *
+                (maxX - padding);
+
+
+            const randomY =
+                padding +
+                Math.random() *
+                (maxY - padding);
+
+
+            noBtn.style.left =
+                randomX + "px";
+
+            noBtn.style.top =
+                randomY + "px";
+
+
+            /*
+                Change the message.
+            */
+
+            noIndex++;
+
+
+            if (noIndex < noMessages.length) {
+
+                noBtn.innerText =
+                    noMessages[noIndex];
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           DESKTOP
+        ========================================================= */
+
+        noBtn.addEventListener(
+            "mouseenter",
+            function () {
+
+                moveNoButton();
+
+            }
+        );
+
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        noBtn.addEventListener(
+            "touchstart",
+            function (event) {
+
+                event.preventDefault();
+
+                moveNoButton();
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+
+        /* =========================================================
+           IF SHE MANAGES TO CLICK NO
+        ========================================================= */
+
+        noBtn.addEventListener(
+            "click",
+            function () {
+
+                noBtn.innerText =
+                    "Okay... I respect that ❤️";
+
+                noBtn.style.position =
+                    "relative";
+
+                noBtn.style.left =
+                    "0";
+
+                noBtn.style.top =
+                    "0";
+
+            }
+        );
+
+
+
+        /* =========================================================
+           CONFETTI
+        ========================================================= */
+
+        function createConfetti() {
+
+            const symbols = [
+
+                "❤️",
+                "💕",
+                "💗",
+                "✨",
+                "💖",
+                "🌸",
+                "🎉"
+
+            ];
+
+
+            for (let i = 0; i < 80; i++) {
+
+                const piece =
+                    document.createElement("div");
+
+
+                piece.className =
+                    "confetti";
+
+
+                piece.innerText =
+                    symbols[
+                        Math.floor(
+                            Math.random() *
+                            symbols.length
+                        )
+                    ];
+
+
+                piece.style.left =
+                    Math.random() * 100 + "vw";
+
+
+                piece.style.fontSize =
+                    12 + Math.random() * 18 + "px";
+
+
+                piece.style.animationDuration =
+                    2 + Math.random() * 3 + "s";
+
+
+                piece.style.animationDelay =
+                    Math.random() * 0.8 + "s";
+
+
+                document.body.appendChild(piece);
+
+
+                setTimeout(() => {
+
+                    piece.remove();
+
+                }, 5000);
+
+            }
+
+        }
+
+    </script>
 
 </body>
+
 </html>
 ```
