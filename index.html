@@ -744,6 +744,243 @@
         }
 
 
+
+        /* =========================================================
+           BIRTHDAY SURPRISE INTRO 🎂❤️
+        ========================================================= */
+
+        body.birthday-locked {
+            overflow: hidden;
+        }
+
+        .birthday-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            background:
+                radial-gradient(circle at 50% 30%, rgba(255, 83, 163, 0.18), transparent 35%),
+                radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.15), transparent 35%),
+                #070611;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .birthday-overlay.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .birthday-card {
+            width: min(560px, 94vw);
+            text-align: center;
+            padding: 35px 25px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.055);
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 25px 100px rgba(0,0,0,0.5);
+            backdrop-filter: blur(15px);
+            animation: birthdayCardIn 0.9s ease;
+        }
+
+        .birthday-stage {
+            display: none;
+        }
+
+        .birthday-stage.active {
+            display: block;
+            animation: birthdayStageIn 0.7s ease;
+        }
+
+        .birthday-kicker {
+            color: #ff76ba;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .birthday-card h1 {
+            font-size: clamp(2.2rem, 8vw, 4.5rem);
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .birthday-card h1 span {
+            color: #ff72b6;
+        }
+
+        .birthday-card p {
+            color: #bbb7c5;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .birthday-open,
+        .birthday-continue {
+            padding: 15px 30px;
+            border: 0;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff4f9a, #a855f7);
+            box-shadow: 0 12px 35px rgba(255,79,154,0.3);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .birthday-open:hover,
+        .birthday-continue:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 18px 45px rgba(255,79,154,0.45);
+        }
+
+        /* Cake */
+        .cake-wrap {
+            position: relative;
+            width: 260px;
+            height: 250px;
+            margin: 5px auto 10px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .cake {
+            position: absolute;
+            left: 50%;
+            bottom: 25px;
+            transform: translateX(-50%);
+            width: 190px;
+            height: 90px;
+            border-radius: 18px 18px 25px 25px;
+            background: linear-gradient(#ff8fc6, #d94f9d);
+            box-shadow: 0 15px 35px rgba(255,80,160,0.3);
+        }
+
+        .cake::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -25px;
+            width: 190px;
+            height: 35px;
+            border-radius: 50%;
+            background: #ffb4d9;
+            box-shadow: inset 0 -7px 0 rgba(205,55,130,0.18);
+        }
+
+        .cake::after {
+            content: "🍓  ✨  🍓";
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 22px;
+            font-size: 20px;
+            letter-spacing: 8px;
+        }
+
+        .candle {
+            position: absolute;
+            bottom: 110px;
+            width: 12px;
+            height: 55px;
+            border-radius: 5px;
+            background: repeating-linear-gradient(
+                135deg,
+                #fff,
+                #fff 7px,
+                #ff72b6 7px,
+                #ff72b6 14px
+            );
+            z-index: 3;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .candle.one { left: 76px; }
+        .candle.two { left: 124px; }
+        .candle.three { left: 172px; }
+
+        .flame {
+            position: absolute;
+            width: 16px;
+            height: 24px;
+            left: -2px;
+            top: -25px;
+            border-radius: 50% 50% 50% 50%;
+            background: #ffd166;
+            box-shadow: 0 0 15px #ffb703, 0 0 35px rgba(255,183,3,0.8);
+            animation: flame 0.8s ease-in-out infinite alternate;
+        }
+
+        .candle.blown {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.5);
+        }
+
+        .wish-text {
+            color: #ff9ccc !important;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px !important;
+            animation: pulseWish 1.5s infinite;
+        }
+
+        .birthday-title {
+            color: #ff72b6;
+            text-shadow: 0 0 25px rgba(255,80,160,0.4);
+        }
+
+        .birthday-title .emoji {
+            display: inline-block;
+            animation: cakeBounce 1.2s infinite;
+        }
+
+        .birthday-small {
+            font-size: 14px;
+            color: #888 !important;
+        }
+
+        @keyframes birthdayCardIn {
+            from { opacity: 0; transform: translateY(25px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes birthdayStageIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes flame {
+            from { transform: scale(1) rotate(-3deg); }
+            to { transform: scale(1.12) rotate(3deg); }
+        }
+
+        @keyframes pulseWish {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes cakeBounce {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-8px) rotate(-4deg); }
+        }
+
+        @media (max-width: 600px) {
+            .birthday-card {
+                padding: 30px 18px;
+            }
+
+            .cake-wrap {
+                transform: scale(0.88);
+                margin-top: -5px;
+                margin-bottom: -5px;
+            }
+        }
+
         /* =========================================================
            RESPONSIVE
         ========================================================= */
@@ -834,6 +1071,104 @@
 
 
 <body>
+
+
+    <!-- =========================================================
+         BIRTHDAY SURPRISE INTRO 🎂❤️
+         This appears before the original website.
+    ========================================================== -->
+
+    <div class="birthday-overlay" id="birthdayOverlay">
+
+        <div class="birthday-card">
+
+            <!-- STAGE 1 -->
+            <div class="birthday-stage active" id="birthdayStage1">
+                <div class="birthday-kicker">A little surprise for you ✨</div>
+
+                <h1>
+                    Hey, <span>Yanna</span>! ❤️
+                </h1>
+
+                <p>
+                    Before you explore this little website...
+                    <br>
+                    I have something special to say. 👀
+                </p>
+
+                <button class="birthday-open" id="birthdayOpen">
+                    OPEN YOUR SURPRISE ✨
+                </button>
+            </div>
+
+
+            <!-- STAGE 2 -->
+            <div class="birthday-stage" id="birthdayStage2">
+
+                <div class="birthday-kicker">
+                    Your birthday surprise 🎂
+                </div>
+
+                <div class="cake-wrap" id="cakeWrap">
+
+                    <div class="candle one">
+                        <div class="flame"></div>
+                    </div>
+
+                    <div class="candle two">
+                        <div class="flame"></div>
+                    </div>
+
+                    <div class="candle three">
+                        <div class="flame"></div>
+                    </div>
+
+                    <div class="cake"></div>
+
+                </div>
+
+                <p class="wish-text">
+                    Make a wish, Yanna... 🥹✨
+                </p>
+
+                <p class="birthday-small">
+                    Click the cake to blow out the candles 🎂
+                </p>
+
+            </div>
+
+
+            <!-- STAGE 3 -->
+            <div class="birthday-stage" id="birthdayStage3">
+
+                <div class="birthday-kicker">
+                    Today is your special day 🎉
+                </div>
+
+                <h1 class="birthday-title">
+                    <span class="emoji">🎂</span>
+                    HAPPY BIRTHDAY,
+                    <span>YANNA!</span>
+                    ❤️
+                </h1>
+
+                <p>
+                    I hope your day is filled with happiness,
+                    laughter, good memories, and lots of good luck. 🥹❤️
+                    <br><br>
+                    And yes... may this little website make you smile
+                    kahit konti lang. 😂
+                </p>
+
+                <button class="birthday-continue" id="birthdayContinue">
+                    CONTINUE TO YOUR SURPRISE → 💗
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
     <!-- =========================================================
          FLOATING HEARTS
@@ -1362,6 +1697,97 @@
     ========================================================= -->
 
     <script>
+
+
+        /* =========================================================
+           BIRTHDAY SURPRISE 🎂❤️
+        ========================================================= */
+
+        document.body.classList.add("birthday-locked");
+
+        const birthdayOverlay =
+            document.getElementById("birthdayOverlay");
+
+        const birthdayStage1 =
+            document.getElementById("birthdayStage1");
+
+        const birthdayStage2 =
+            document.getElementById("birthdayStage2");
+
+        const birthdayStage3 =
+            document.getElementById("birthdayStage3");
+
+        const birthdayOpen =
+            document.getElementById("birthdayOpen");
+
+        const birthdayContinue =
+            document.getElementById("birthdayContinue");
+
+        const cakeWrap =
+            document.getElementById("cakeWrap");
+
+        const birthdayCandles =
+            document.querySelectorAll(".candle");
+
+        function showBirthdayStage(stage) {
+
+            birthdayStage1.classList.remove("active");
+            birthdayStage2.classList.remove("active");
+            birthdayStage3.classList.remove("active");
+
+            stage.classList.add("active");
+        }
+
+        birthdayOpen.addEventListener("click", function () {
+
+            showBirthdayStage(birthdayStage2);
+
+        });
+
+        let candlesBlown = false;
+
+        cakeWrap.addEventListener("click", function () {
+
+            if (candlesBlown) return;
+
+            candlesBlown = true;
+
+            birthdayCandles.forEach((candle, index) => {
+
+                setTimeout(() => {
+                    candle.classList.add("blown");
+                }, index * 150);
+
+            });
+
+            createConfetti();
+
+            setTimeout(() => {
+
+                showBirthdayStage(birthdayStage3);
+
+            }, 1000);
+
+        });
+
+        birthdayContinue.addEventListener("click", function () {
+
+            birthdayOverlay.classList.add("hide");
+
+            document.body.classList.remove("birthday-locked");
+
+            setTimeout(() => {
+
+                birthdayOverlay.style.display = "none";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }, 850);
+
+        });
 
 
         /* =========================================================
